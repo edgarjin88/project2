@@ -2,15 +2,16 @@
 #
 # Table name: users
 #
-#  id         :bigint(8)        not null, primary key
-#  username   :string
-#  email      :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :bigint(8)        not null, primary key
+#  username        :string
+#  email           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  password_digest :string
+#  admin           :boolean          default(FALSE)
 #
 
 class User< ApplicationRecord
-
   has_many :articles
   before_save { self.email = email.downcase}
   # self.email의 기본 벨류를 다시 다운케이스 하는 거다. 왜냐면 저장 전에 이미 self.eamil에 벨류가
@@ -22,4 +23,8 @@ class User< ApplicationRecord
             uniqueness: {case_sensitive: false},
             format: { with: VALID_EMAIL_REGEX}
   
+            
+  has_secure_password
+
 end
+ 
