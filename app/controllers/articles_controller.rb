@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :show, :destroy]
   # 여기서 set_article은 왜 :가 붙는가? 
   # 아래의 article_params와 비교된다. 이것은 콜백의 개념인가?
+  # 위에서 말하는 것은 실제 코드가 아니라, 그냥 레퍼런스다. 코드를 여기서 실행하면 안되기 때문이다. 
 
   def index
     @articles = Article.all
@@ -15,7 +16,7 @@ class ArticlesController < ApplicationController
     # render plain: params[:article].inspect
     @article = Article.new(article_params)
     if @article.save
-      flash[:notice] = "Article was created"
+      flash[:success] = "Article was created"
       redirect_to article_path(@article)
 
     else
@@ -30,7 +31,7 @@ class ArticlesController < ApplicationController
   def destroy
 
     @article.destroy
-    flash[:notice] = "Article was deleted"
+    flash[:danger] = "Article was deleted"
 
     redirect_to articles_path
     
@@ -43,7 +44,7 @@ class ArticlesController < ApplicationController
   def update
 
     if @article.update(article_params)
-      flash[:notice] = "Article was updated"
+      flash[:success] = "Article was updated"
       redirect_to article_path(@article)
     else
       render 'edit'

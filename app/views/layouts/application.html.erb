@@ -6,11 +6,18 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag    '/stylesheets/custom', media: 'all' %>
+    
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
+    <%= render 'layouts/navigation' %>
     <%= render 'layouts/messages' %>
-    <%= yield %>
+    <div class="container">
+       <%= yield %>
+    </div>
+    <%= render 'layouts/footer' %>
+   
   </body>
 </html>
