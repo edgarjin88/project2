@@ -13,6 +13,7 @@
 
 //= require rails-ujs
 //= require jquery
-//= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+
+//기본적으로 젬파일이니, jquery폴더 안에 있는 파일을 읽는 require_tree가 작동하지 안는다. 
