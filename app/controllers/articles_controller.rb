@@ -26,6 +26,7 @@ class ArticlesController < ApplicationController
   end
   
   def show
+    # no ?
 
   end 
 
