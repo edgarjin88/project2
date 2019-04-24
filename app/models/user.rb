@@ -12,7 +12,8 @@
 #
 
 class User< ApplicationRecord
-  has_many :articles
+  has_many :articles, dependent: :destroy
+  # 모든 것들을 지운다 dependent: :destroy 하면
   before_save { self.email = email.downcase}
   # self.email의 기본 벨류를 다시 다운케이스 하는 거다. 왜냐면 저장 전에 이미 self.eamil에 벨류가
   # 어사인 되어 있으니까. 

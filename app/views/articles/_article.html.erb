@@ -19,7 +19,8 @@
           
           </div>
         </div>
-        <% if logged_in? && current_user == article.user%>
+        <% if logged_in? && (current_user == article.user || current_user.admin?) %>
+        <%# || 마크에 주의하자. current_user.admin? 이어도 가능하게 해 준다 %>
           <div class="article-actions">
 
               <%= link_to 'Edit this article', edit_article_path(article), 

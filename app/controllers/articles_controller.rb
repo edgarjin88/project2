@@ -71,7 +71,8 @@ class ArticlesController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @article.user
+    if current_user != @article.user and !current_user.admin?
+      #admin은 수정할 수있다.
       # create 한 시점에서 의 current_user와는 다를 수가 있으니. 
       # @article.user = current_user
       flash[:danger] = "You can only edit or delete your own post"
