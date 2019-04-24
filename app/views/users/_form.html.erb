@@ -1,8 +1,7 @@
 <%= render 'shared/errors', obj: @user %>
 
 <div class="row">
-<div class="col-xs-12">
-<%= form_for(@user, :html=> {class: "form-horizontal", role: "form"}) do |f| %>
+<div class="col-xs-12"><%= form_for(@user, :html=> {class: "form-horizontal", role: "form"}) do |f| %>
  <div class="form-group"> 
   <div class="control-label col-sm-2">
   <%= f.label :username %> 
@@ -50,6 +49,7 @@ autofocus: true %>
   <div class="col-xs-4 col-xs-offset-4">
   [<%= link_to "Cancel request and return to articles listing", users_path  %>]
   </div>
+
 
 
 </div>

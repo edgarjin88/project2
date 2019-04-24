@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dgprcc7nl
+  api_key: '927441839387814'
+  api_secret: Hn0wdkJExk-AfiBmNmYIUHMkDA8
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dgprcc7nl
+  api_key: '927441839387814'
+  api_secret: Hn0wdkJExk-AfiBmNmYIUHMkDA8
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dgprcc7nl
+  api_key: '927441839387814'
+  api_secret: Hn0wdkJExk-AfiBmNmYIUHMkDA8
+  enhance_image_tag: true
+  static_file_support: false
