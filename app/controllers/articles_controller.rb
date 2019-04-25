@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
   # let's make user required for every action
   before_action :require_same_user, only: [:edit, :update, :destroy]
-  # after_action :remove_name, except: [:show]
+  after_action :remove_name, except: [:show]
   # 여기서 set_article은 왜 :가 붙는가? 
   # 아래의 article_params와 비교된다. 이것은 콜백의 개념인가?
   # 위에서 말하는 것은 실제 코드가 아니라, 그냥 레퍼런스다. 코드를 여기서 실행하면 안되기 때문이다. 
