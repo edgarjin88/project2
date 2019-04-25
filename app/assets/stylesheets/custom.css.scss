@@ -100,3 +100,24 @@ $navbar-default-bg: black;
    float: left; 
    margin-left: 15px;
  }
+
+
+ .badge{
+   background-color: #cef6f5;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   font-weight: bold;
+ }
+
+ .input_checkbox input {
+   width: auto !important;
+ }
+
+ .music {
+
+  width: 300px; 
+ }
+
+ iframe {
+   display: none
+ }

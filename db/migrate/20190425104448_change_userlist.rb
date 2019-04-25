@@ -1,0 +1,10 @@
+class ChangeUserlist < ActiveRecord::Migration[5.2]
+  def change
+    remove_column :userlists, :userlist
+  end
+end
+
+
+
+
+

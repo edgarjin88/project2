@@ -6,7 +6,8 @@
     <%# 이경우 그냥 클라스에 center를 더했다 이미 클라스가 있기 때문에. %>
       <div class="col-md-4 col-md-offset-4">
       <li>Created By</li>
-        <li><%= link_to gravatar_for(@article.user), user_path(@article.user) %></li>
+        <li><%= link_to cl_image_tag(@article.user.image, :width => 250), user_path(@article.user) %></li>
+        <%# check if it working %>
         <%# to directly go to User path. What if i just use "use for user_path" %>
         <%# it would give error message. Article controller has no reference to user  %>
         <li class="article-title">
@@ -17,19 +18,69 @@
     </div>  
   </ul>
 <% end %>
-  <h4 class="center description"><strong>Description: </strong> </h4>
+  <h4 class="center description"><strong> </strong> </h4>
+  <div class="center"> <%= cl_image_tag(@article.image, :width => 400) %></div>
+  
+
+  <%= raw(@article.music) if @article.music.present? %>
+
+   <%# raw(somePost.content). %>
+
+
+<%# comment view parts use bootstrap%>
+<div id ="message-container">
+
+  <% @comments.each do |comment| %>
+  <%if comment.article_id == @article.id %>
+  <% user = User.find(comment.user_id) %>
+  <%= user.username %> >> <%= comment.content%>
+  <br>
+  <% end %>
+<% end %>
+
+</div>
+
+
+
+<div>
+    <p>This is User list in the contanier</p>
+    <%=  @userlist.player %>
+</div>
+
+<div> 
+
+<%# User name list%>
+<%# 차후에 메시지 형식의 부츠트랩이 있는지 찾아볼것. 섭밋 버튼도 마찬가지%>
+  <%= form_for @comment do|f| %>
+
+  <%= f.label "Message :" %>
+  <%= f.text_field :content, :class => "message" %>
+
+  <%= f.hidden_field :user_id, :value => current_user.id  %>
+  <%= f.hidden_field :article_id, :value => @article.id%>
+
+<%= f.submit "Send a message" %>
+  <% end%>
+
+
+</div>
+
+  
   <hr>
     <%= simple_format(@article.description) %>
-
+    <% if @article.categories.any? %>
+    <p>Categories: <%= render @article.categories %></p>
+    <%#Short cut for each, do%>
+    <% end%> 
   <div class="article-actions">
  <% if logged_in? && (current_user == @article.user || current_user.admin?)%>
-    <%= link_to 'Edit this article', edit_article_path(@article), 
+    <%= link_to 'Edit this Channel', edit_article_path(@article), 
     class: "btn btn-xs btn-primary" %>
-    <%= link_to 'Delete this article', article_path(@article), method: :delete, 
-                                      data: {confirm: "Do you want to delete the article?"}, 
+    <%= link_to 'Delete this Channel', article_path(@article), method: :delete, 
+                                      data: {confirm: "Do you want to delete the Channel?"}, 
                                       class: "btn btn-xs btn-danger" %>
     <% end %>
-    <%= link_to "View to articles listing", articles_path, class: "btn btn-xs btn-success"  %>|
+    <%= link_to "View to Channel listing", articles_path, class: "btn btn-xs btn-success"  %>|
 </div>  
 
 </div>

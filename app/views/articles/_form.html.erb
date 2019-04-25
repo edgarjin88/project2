@@ -2,7 +2,8 @@
 
 <div class="row">
 <div class="col-xs-12">
-<%= form_for(@article, :html=> {class: "form-horizontal", role: "form"}) do |f| %>
+
+<%= form_for(@article, :html=> {:multipart => true, class: "form-horizontal", role: "form"}) do |f| %>
  <div class="form-group"> 
   <div class="control-label col-sm-2">
   <%= f.label :title %> 
@@ -15,6 +16,30 @@ autofocus: true %>
  </div>
 </div>
  
+<div class="form-group"> 
+  <div class="control-label col-sm-2">
+
+    <%= f.label "Profile Image: " %>  </div>
+
+    <div class="col-sm-8">
+    <%= f.cl_image_upload :image, class: "form-control" %> 
+    </div>
+
+    </div>
+
+<div class="form-group"> 
+  <div class="control-label col-sm-2">
+
+    <%= f.label "Music URL: " %>  </div>
+
+    <div class="col-sm-8">
+    <%= f.text_field :music, class: "form-control", placeholder: 
+    '<iframe type="text/html" src="YOURMUSICURL?autoplay=1" frameborder="0" allow="autoplay"></iframe>' %> 
+    </div>
+
+    </div>
+
+
  <div class="form-group"> 
   <div class="control-label col-sm-2">
 
@@ -28,10 +53,19 @@ autofocus: true %>
  
 <div class="form-group">
   <div class="col-sm-10">
-    <%= f.submit class: 'col-sm-offset-2 btn btn-primary btn-lg'%>
+    <%= f.submit 'Update this Channel', class: 'col-sm-offset-6 btn btn-primary'%>
   </div>
 </div>
 
+<div class="form-group">
+<div class="row"> 
+  <div class="col-sm-offset-2 col-sm 8">
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb|%>
+    <%= cb.label(class: "checkbox-inline input_checkbox") { cb.check_box(class: "checkbox") + cb.text} %>
+    <%#display checkbox%>
+    <% end%>
+  </div>
+</div>
 
 
 <% end %>

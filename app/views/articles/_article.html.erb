@@ -4,11 +4,16 @@
       <div class="well well-lg">
         <div class="article-title">
 
-        <%= link_to article.title, article_path(article) %>
+        <%= link_to article.title, article_path(article)
+        %> 
+        <%#click event%>
          
         </div>
 
         <div class="article-body">
+         <%= 
+         link_to cl_image_tag(article.image, :width => 250), article_path(article) if article.image.present?%>
+         <p></p>
           <%= truncate(article.description, length: 100) %>
           <div class="article-meta-details"> 
           
@@ -19,14 +24,17 @@
           
           </div>
         </div>
+        <% if article.categories.any? %>
+        <p>Categories: <%= render article.categories %></p>
+        <% end%>
         <% if logged_in? && (current_user == article.user || current_user.admin?) %>
         <%# || 마크에 주의하자. current_user.admin? 이어도 가능하게 해 준다 %>
           <div class="article-actions">
 
-              <%= link_to 'Edit this article', edit_article_path(article), 
+              <%= link_to 'Edit this Channel', edit_article_path(article), 
               class: "btn btn-xs btn-primary" %>
-              <%= link_to 'Delete this article', article_path(article), method: :delete, 
-                                                data: {confirm: "Do you want to delete the article?"}, 
+              <%= link_to 'Delete this Channel', article_path(article), method: :delete, 
+                                                data: {confirm: "Do you want to delete the Channel?"}, 
                                                 class: "btn btn-xs btn-danger" %>
           </div>  
 
