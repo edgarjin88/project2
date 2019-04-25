@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   # after this, rails would recognize the above two as the helper methods
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    current_user ||= User.find(session[:user_id]) if session[:user_id]
     
     #User.find 에서 session에 있는 아이디를 써서 full detail을 가져온다. 
     #기본적으로 session의 user.id은 엠티이다. 나중에 정해준다. 
