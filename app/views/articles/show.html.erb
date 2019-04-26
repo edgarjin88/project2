@@ -28,7 +28,17 @@
 
 
 <%# comment view parts use bootstrap%>
-<div id ="message-container">
+
+<div id="chatting">
+
+    <p><h4>Current users on this channel</h4></p>
+    <%=  @userlist.player %>
+</div>
+
+<div> 
+
+<div id ="message-container"> 
+<h3>Talking!</h3>
 
   <% @comments.each do |comment| %>
   <%if comment.article_id == @article.id %>
@@ -42,12 +52,7 @@
 
 
 
-<div>
-    <p>This is User list in the contanier</p>
-    <%=  @userlist.player %>
-</div>
 
-<div> 
 
 <%# User name list%>
 <%# 차후에 메시지 형식의 부츠트랩이 있는지 찾아볼것. 섭밋 버튼도 마찬가지%>

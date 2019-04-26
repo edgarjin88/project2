@@ -133,6 +133,8 @@ class ArticlesController < ApplicationController
     @userlist = Userlist.find(session[:userlist_id])
     @userlist.player.delete(current_user.username)
     @userlist.save
+
+    # if block required to manage the error
     end
 
   end
