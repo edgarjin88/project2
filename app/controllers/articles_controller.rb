@@ -4,9 +4,9 @@ class ArticlesController < ApplicationController
 
   # let's make user required for every action
   before_action :require_same_user, only: [:edit, :update, :destroy]
-  # after_action :remove_name, except: [:show]
+  after_action :remove_name, except: [:show]
   # this code not work. 
-
+  
   # 여기서 set_article은 왜 :가 붙는가? 
   # 아래의 article_params와 비교된다. 이것은 콜백의 개념인가?
   # 위에서 말하는 것은 실제 코드가 아니라, 그냥 레퍼런스다. 코드를 여기서 실행하면 안되기 때문이다. 
@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
      
-her
+
   end
 
   def create
@@ -61,11 +61,12 @@ her
     @userlist = Userlist.find_by article_id: @article.id
     @userlist.player.push(current_user.username).uniq!
 
+    
+    @userlist.save
+    
     session[:userlist_id] = @userlist.id
     # 마지막으로 옮길까?
 
-    @userlist.save
-    
     #########################################
     # 일단 여기까지. 다음은 ajax로 해결하자. 
     # raise "hell"
@@ -128,9 +129,11 @@ her
   end
 
   def remove_name
+    if Userlist.find(session[:userlist_id])
     @userlist = Userlist.find(session[:userlist_id])
     @userlist.player.delete(current_user.username)
     @userlist.save
+    end
 
   end
 
